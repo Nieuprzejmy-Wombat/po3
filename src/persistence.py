@@ -1,23 +1,17 @@
-from collections import namedtuple
-
-user: tuple[int, str, str, int, str] = namedtuple(
-    "user",
-    ("id", "first_name", "last_name", "age", "group"),
-    defaults=tuple("user")
-)
+from datatypes import internal_user
 
 
 class Repository:
-    def __init__(self, users: dict[int, user] = None):
-        self.users: dict[int, user] = {} if users is None else users
+    def __init__(self, users: dict[int, internal_user] = None) -> None:
+        self.users = {} if users is None else users
 
     def get_users(self):
         return self.users
 
-    def get_user(self, id: int) -> user:
+    def get_user(self, id: int) -> internal_user:
         return self.users[id]
 
-    def create_user(self, user) -> None:
+    def create_user(self, user: internal_user) -> None:
         self.users[user.id] = user
 
     def modify_user(self, user: tuple[int, str | None, str | None, int | None, str | None]) -> None:
