@@ -1,4 +1,5 @@
-from datatypes import internal_user, external_user, Repository
+from datatypes import internal_user, external_user
+from persistence import Repository
 from datetime import date
 
 
