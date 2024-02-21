@@ -1,7 +1,7 @@
 from flask import Flask, Response, request
 from controller import Controller
 from persistence import Repository
-from datatypes import external_user, internal_user
+from datatypes import external_user
 
 app = Flask(__name__)
 controller = Controller(Repository())
@@ -10,6 +10,7 @@ OK = 200
 CREATED = 201
 BAD_REQUEST = 400
 NOT_FOUND = 404
+
 
 @app.get("/users")
 def get_users():

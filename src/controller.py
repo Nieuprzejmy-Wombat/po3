@@ -24,5 +24,5 @@ class Controller:
 
     def external_to_internal(self, user: external_user) -> internal_user:
         age = date.today().year - user.birth_year
-        id = len(self._repository.get_users()) + 1
+        id = max(self._repository.get_users()) + 1
         return internal_user(id, user.first_name, user.last_name, age, user.group)
