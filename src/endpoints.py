@@ -31,7 +31,8 @@ def create_user():
     is_birth_year_valid = int(payload["birth_year"]) > 1900
     is_group_valid = payload["group"] in "user", "premium", "admin"
     if is_name_valid and is_birth_year_valid and is_group_valid:
-        controller.create_user(external_user(payload["first_name"], payload["last_name"], int(payload["birth_year"]), payload["group"]))
+        controller.create_user(external_user(payload["first_name"], payload["last_name"], int(
+            payload["birth_year"]), payload["group"]))
         return Response(status=CREATED)
     return Response(status=BAD_REQUEST)
 
@@ -44,7 +45,8 @@ def modify_user(id: int):
         payload.setdefault("last_name")
         payload.setdefault("birth_year")
         payload.setdefault("group")
-        controller.modify_user(external_user(id, payload["first_name"], payload["last_name"], payload["birth_year"], payload["group"]))
+        controller.modify_user(external_user(
+            id, payload["first_name"], payload["last_name"], payload["birth_year"], payload["group"]))
         return Response(status=CREATED)
     return Response(status=NOT_FOUND)
 
