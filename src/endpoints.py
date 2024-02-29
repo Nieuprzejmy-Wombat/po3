@@ -1,7 +1,7 @@
 from flask import Flask, Response, request
-from controller import Controller
-from persistence import Repository
-from datatypes import external_user
+from .controller import Controller
+from .persistence import Repository
+from .datatypes import external_user
 
 app = Flask(__name__)
 controller = Controller(Repository())
