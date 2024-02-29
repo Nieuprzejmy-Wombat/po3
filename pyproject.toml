@@ -7,6 +7,7 @@ authors = ["wombat <u58_makcza_waw@technischools.com>"]
 [tool.poetry.dependencies]
 python = "^3.10"
 Flask = "^3.0.2"
+mock = "^5.1.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^8.0.1"

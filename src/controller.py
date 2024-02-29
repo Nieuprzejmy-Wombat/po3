@@ -1,5 +1,5 @@
-from datatypes import internal_user, external_user
-from persistence import Repository
+from .datatypes import internal_user, external_user
+from .persistence import Repository
 from datetime import date
 
 
@@ -11,7 +11,7 @@ class Controller:
         return self._repository.get_users()
 
     def get_user(self, id: int) -> internal_user:
-        return self._repository.get_users()[id]
+        return self._repository.get_user(id)
 
     def create_user(self, user: external_user) -> None:
         self._repository.create_user(self.external_to_internal(user))
@@ -24,5 +24,5 @@ class Controller:
 
     def external_to_internal(self, user: external_user) -> internal_user:
         age = date.today().year - user.birth_year
-        id = max(self._repository.get_users()) + 1
+        id = max(self._repository.get_users(), default=0) + 1
         return internal_user(id, user.first_name, user.last_name, age, user.group)
