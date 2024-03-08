@@ -1,7 +1,7 @@
 from flask import Flask, Response, request
 from .controller import Controller
 from .persistence import Repository
-from .datatypes import external_user
+from .datatypes import internal_user, external_user
 
 app = Flask(__name__)
 controller = Controller(Repository())
@@ -39,14 +39,11 @@ def create_user():
 
 @app.patch("/users/<id>")
 def modify_user(id: int):
+    id = int(id)
     if id in controller.get_users():
         payload = request.form
-        payload.setdefault("first_name")
-        payload.setdefault("last_name")
-        payload.setdefault("birth_year")
-        payload.setdefault("group")
-        controller.modify_user(external_user(
-            id, payload["first_name"], payload["last_name"], payload["birth_year"], payload["group"]))
+        controller.modify_user(internal_user(id, payload.get("first_name", None), payload.get(
+            "last_name", None), payload.get("birth_year", None), payload.get("group", None)))
         return Response(status=CREATED)
     return Response(status=NOT_FOUND)
 
