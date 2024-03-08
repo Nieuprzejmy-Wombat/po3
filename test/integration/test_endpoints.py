@@ -1,4 +1,4 @@
-from ...src.endpoints import app, get_users, get_user, create_user, modify_user, delete_user, OK, BAD_REQUEST, CREATED, NOT_FOUND
+from ...src.endpoints import app, OK, BAD_REQUEST, CREATED, NOT_FOUND
 
 
 def test_get_users() -> None:
